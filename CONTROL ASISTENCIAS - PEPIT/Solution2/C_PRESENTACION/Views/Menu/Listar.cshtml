@@ -1,0 +1,63 @@
+﻿@using C_ENTIDAD
+@model IEnumerable<Trabajador>
+
+@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Listar</title>
+</head>
+
+<body>
+    <div>
+    <h3> Lista de Trabajadores</h3>
+        <form method="get" action="Nuevo">
+            <input type="submit" value="Nuevo" class="btn btn-success" />
+        </form>
+        <table border="1" style="width:100%">
+            <thead>
+                <tr style="background-color:blue; color:white">
+                    <th>Id</th>
+                    <th>DNI</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Direccion</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                    <th>Sisgedo</th>
+                    <th>Tipo</th>
+                    <th>Facultad</th>
+                    <th>Dependencia</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                       <td>@item.idTrabajador </td>
+                        
+                        <td>@item.DNI</td>
+                        <td>@item.nombre </td>
+                        <td>@item.apellidos</td> 
+                        <td>@item.direccion</td>
+                        <td>@item.correo</td>
+                        <td>@item.telefono</td>  
+                        <td>@item.documentoSisgedo</td>                 
+                        <td>@Html.DisplayFor(modelItem => item.tipoTrabajador.nombreTipo) </td>
+                        <td>@Html.DisplayFor(modelItem => item.facultad.nombreFacultad) </td>
+                        <td>@Html.DisplayFor(modelItem => item.facultad.dependencia.nombreDependencia)</td>
+                        <td>
+                            <a href="@Url.Action("Editar", "Menu", new { idTrabajador = @item.idTrabajador })" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Eliminar </a>
+                        </td>                     
+                    </tr>
+                                      
+                }
+            </tbody>
+        </table>               
+    </div>
+  </body>
+</html>

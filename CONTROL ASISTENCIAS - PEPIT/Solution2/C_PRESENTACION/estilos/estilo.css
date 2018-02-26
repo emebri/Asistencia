@@ -1,0 +1,23 @@
+﻿#parrafo1{
+    font-family:Algerian;
+    color: red;
+    margin-left: 10px;
+    font-size: 15px
+}
+
+.parrafo01{
+    font-family:'Book Antiqua';
+    color: blue;
+    font-size: 20px
+}
+
+
+#vinculo1 {
+    font-family:Arial;
+    color: blue;
+    font-size: 10px
+}
+
+#vinculo1:hover {
+    color: yellowgreen;
+}

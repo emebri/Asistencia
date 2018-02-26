@@ -1,0 +1,40 @@
+marca (id)
+alm_producto (id/ marca)
+	f.regstro
+	f.modificacion
+	usuario.registro
+	usuario.modificacion
+seg_usuario(id) ** baja **
+venDEpedido(id: pedido/producto)
+ven_pedido(id - usuario
+
+///*************************//
+
+create table Usuario (
+idUsuario int not null,
+Nombres varchar (40),
+Apellidos varchar (40),
+->DNI number (8),
+-> telefono int,
+-> email varchar (25),
+-> 
+nombreUsuario varchar (20),
+contrasena varchar (20),
+baja bit,
+validoDesde date,
+constraint [PK_Usuario] PRIMARY KEY CLUSTERED ( [idUsuario] ASC)
+)
+
+
+create table Asistencia (
+idAsistencia int not null,
+fecha date,
+idUsuario int,
+horaEntrada datetime,
+horaSalida datetime,
+minutosTrabajados  decimal(),
+nombreUsuario varchar (20),
+constraint [PK_Asistencia] PRIMARY KEY CLUSTERED ( [idAsistencia] ASC)
+)
+
+create 

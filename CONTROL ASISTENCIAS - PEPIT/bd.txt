@@ -1,0 +1,83 @@
+create table Dependencia (
+	id int  IDENTITY(1,1) Not Null
+	,nombreDepen varchar(50) not null
+constraint [PK_Facultad] PRIMARY KEY CLUSTERED ( [id] ASC)
+)
+
+
+create table Facultad (
+	id int  IDENTITY(1,1) Not Null
+	,idDependecia int not null
+	,nombreFacultad varchar(50) Not Null
+
+constraint [PK_Facultad] PRIMARY KEY CLUSTERED ( [id] ASC)
+
+)
+
+
+create table Trabajador (
+	id int  IDENTITY(1,1) Not Null
+      ,idFacultad int Not Null
+	,idTipoTrabajador int Not null
+      ,nombre varchar(50) Not Null
+      ,apellidos varchar(50) Not Null
+      ,dni varchar(8) Not Null
+      ,direccion varchar(100)
+      ,correo varchar(100)
+      ,telefono varchar(10) Not Null
+	,documentoSisgedo int Not Null
+	
+constraint [PK_Trabajador] PRIMARY KEY CLUSTERED ( [id] ASC)
+)
+
+
+create table Usuario (
+	id int  IDENTITY(1,1) Not Null
+	,idTrabajador int Not Null
+	,nombreUsuario varchar(50) Not Null
+	,password varbinary(8000) Not Null
+	,estadoActivo bit Not Null
+      ,fechaCreacion datetime Not Null
+
+constraint [PK_Usuario] PRIMARY KEY CLUSTERED ( [id] ASC)
+)
+
+
+create table Asistencia (
+	,id int  IDENTITY(1,1) not null
+	,fecha date Not Null
+	,idUsuario int Not Null
+	,horaEntrada datetime Not Null
+	,horaSalida datetime Not Null
+ ,minutosTrabajados  decimal Not Null
+
+constraint [PK_Asistencia] PRIMARY KEY CLUSTERED ( [id] ASC)
+)
+
+create table tipoTrabajador (
+	,id int IDENTITY(1,1) not null
+	,nombreTipo varchar(50) not null
+constraint [PK_tipoTrabajador] PRIMARY KEY CLUSTERED ( [id] ASC)
+)
+
+ALTER TABLE [dbo].[Usuario]  WITH CHECK ADD  CONSTRAINT [FK_Usuario_Trabajador] FOREIGN KEY([idTrabajador])
+REFERENCES [dbo].[Trabajador] ([id])
+GO
+
+ALTER TABLE [dbo].[Asistencia]  WITH CHECK ADD  CONSTRAINT [FK_Asistencia_Usuario] FOREIGN KEY([idUsuario])
+REFERENCES [dbo].[Usuario] ([id])
+GO
+
+
+
+ALTER TABLE [dbo].[Facultad]  WITH CHECK ADD  CONSTRAINT [FK_Facultad_Dependencia] FOREIGN KEY([idDependecia])
+REFERENCES [dbo].[Dependencia] ([id])
+GO
+
+ALTER TABLE [dbo].[Trabajador]  WITH CHECK ADD  CONSTRAINT [FK_Trabajador_Facultad] FOREIGN KEY([idFacultad])
+REFERENCES [dbo].[Facultad] ([id])
+GO
+
+ALTER TABLE [dbo].[Trabajador]  WITH CHECK ADD  CONSTRAINT [FK_Trabajador_tipoTrabajador] FOREIGN KEY([idTipoTrabajador])
+REFERENCES [dbo].[tipoTrabajador] ([id])
+GO 
